@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Caesar Cipher</title>
+    <link rel="stylesheet" href="./css/bulma.css" />
+  </head>
+  <body>
+    <section class="hero is-primary is-bold">
+      <div class="hero-body">
+        <div class="container">
+          <h1 class="title">
+            Caesar cipher
+          </h1>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="columns">
+          <div class="column is-one-third-tablet">
+            <div class="field">
+              <label class="label">Caesar Shift</label>
+              <div class="control">
+                <input class="input" type="number" id="num" placeholder="3" />
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label">Text to Encode/Decode:</label>
+              <div class="control">
+                <input
+                  class="input"
+                  type="text"
+                  id="txt"
+                  placeholder="Text input"
+                />
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label">Encrypted/Decrypted text:</label>
+              <div class="control">
+                <input
+                  class="input"
+                  type="text"
+                  id="result"
+                  placeholder="Output"
+                  readonly
+                />
+              </div>
+            </div>
+
+            <div class="field is-grouped">
+              <div class="control">
+                <button class="button is-link" onclick="caesar()">
+                  Encode
+                </button>
+              </div>
+              <div class="control">
+                <button class="button is-link" onclick="decaesar()">
+                  Decode
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr />
+    <div class="container" style="padding-bottom: 50px;">
+      <a class="" href="./index.html">
+        <p class="has-text-weight-bold">&larr; Home</p>
+      </a>
+    </div>
+
+    <script>
+      function caesar() {
+        var num = parseInt(document.getElementById("num").value);
+        var txt = document.getElementById("txt").value;
+        var res = document.getElementById("result");
+        var x = [];
+        if (num >= -26 && num <= 26) {
+          for (i = 0; i < txt.length; i++) {
+            x[i] = txt.charCodeAt(i) + num;
+            if (txt.charCodeAt(i) >= 65 && txt.charCodeAt(i) <= 90) {
+              if (x[i] >= 65 && x[i] <= 90) {
+                x[i] = x[i];
+              } else if (x[i] > 90) {
+                x[i] = x[i] - 26;
+              } else if (x[i] < 65) {
+                x[i] = x[i] + 26;
+              }
+            }
+            if (txt.charCodeAt(i) == 32) {
+              x[i] = txt.charCodeAt(i);
+            }
+
+            if (txt.charCodeAt(i) >= 97 && txt.charCodeAt(i) <= 122) {
+              if (x[i] >= 97 && x[i] <= 122) {
+                x[i] = x[i];
+              } else if (x[i] > 122) {
+                x[i] = x[i] - 26;
+              } else if (x[i] < 97) {
+                x[i] = x[i] + 26;
+              }
+            }
+          }
+        } else {
+          alert("Number must be from -26 to 26, try again :)");
+        }
+
+        // document.write(String.fromCharCode.apply(null, x))
+        res.value = String.fromCharCode.apply(null, x);
+      }
+
+      function decaesar() {
+        var num = parseInt(document.getElementById("num").value) * -1;
+        var txt = document.getElementById("txt").value;
+        var res = document.getElementById("result");
+        var x = [];
+        if (num >= -26 && num <= 26) {
+          for (i = 0; i < txt.length; i++) {
+            x[i] = txt.charCodeAt(i) + num;
+            if (txt.charCodeAt(i) >= 65 && txt.charCodeAt(i) <= 90) {
+              if (x[i] >= 65 && x[i] <= 90) {
+                x[i] = x[i];
+              } else if (x[i] > 90) {
+                x[i] = x[i] - 26;
+              } else if (x[i] < 65) {
+                x[i] = x[i] + 26;
+              }
+            }
+            if (txt.charCodeAt(i) == 32) {
+              x[i] = txt.charCodeAt(i);
+            }
+
+            if (txt.charCodeAt(i) >= 97 && txt.charCodeAt(i) <= 122) {
+              if (x[i] >= 97 && x[i] <= 122) {
+                x[i] = x[i];
+              } else if (x[i] > 122) {
+                x[i] = x[i] - 26;
+              } else if (x[i] < 97) {
+                x[i] = x[i] + 26;
+              }
+            }
+          }
+        } else {
+          alert("Number must be from -26 to 26, try again :)");
+        }
+
+        // document.write(String.fromCharCode.apply(null, x))
+        res.value = String.fromCharCode.apply(null, x);
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DES Cipher</title>
+    <link rel="stylesheet" href="./css/bulma.css" />
+  </head>
+  <body>
+    <section class="hero is-primary is-bold">
+      <div class="hero-body">
+        <div class="container">
+          <h1 class="title">
+            DES cipher
+          </h1>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-bottom: 0px;">
+      <div class="container">
+        <div class="columns">
+          <div class="column">
+            <div class="columns">
+              <div class="column">
+                <h1 class="subtitle">Encryption</h1>
+                <hr />
+                <div class="field">
+                  <label class="label">Enter plaintext:</label>
+                  <div class="control">
+                    <input class="input" type="text" id="plaintext" required />
+                  </div>
+                </div>
+
+                <div class="field">
+                  <label class="label">Enter password:</label>
+                  <div class="control">
+                    <input class="input" type="text" id="pass1" required />
+                  </div>
+                </div>
+
+                <div class="field">
+                  <div class="control">
+                    <button class="button is-link" onclick="encrypt()">
+                      Encrypt
+                    </button>
+                  </div>
+                </div>
+
+                <div class="field">
+                  <label class="label">Output:</label>
+                  <div class="control">
+                    <textarea
+                      class="textarea"
+                      type="text"
+                      id="out1"
+                      readonly
+                    ></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="column">
+            <div class="columns">
+              <div class="column">
+                <h1 class="subtitle">Decryption</h1>
+                <hr />
+                <div class="field">
+                  <label class="label">Enter ciphertext:</label>
+                  <div class="control">
+                    <input class="input" type="text" id="ciphertext" required />
+                  </div>
+                </div>
+
+                <div class="field">
+                  <label class="label">Enter password:</label>
+                  <div class="control">
+                    <input class="input" type="text" id="pass2" required />
+                  </div>
+                </div>
+
+                <div class="field">
+                  <div class="control">
+                    <button class="button is-link" onclick="decrypt()">
+                      Decrypt
+                    </button>
+                  </div>
+                </div>
+
+                <div class="field">
+                  <label class="label">Output:</label>
+                  <div class="control">
+                    <textarea
+                      class="textarea"
+                      type="text"
+                      id="out2"
+                      readonly
+                    ></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr />
+    <div class="container" style="padding-bottom: 50px;">
+      <a class="" href="./index.html">
+        <p class="has-text-weight-bold">&larr; Home</p>
+      </a>
+    </div>
+
+    <script src="./crypto-js/crypto-js.js"></script>
+    <script>
+      function encrypt() {
+        var ptext = document.getElementById("plaintext").value;
+        var pass1 = document.getElementById("pass1").value;
+        var e = CryptoJS.DES.encrypt(ptext, pass1).toString();
+        document.getElementById("out1").value = e;
+      }
+
+      function decrypt() {
+        var ctext = document.getElementById("ciphertext").value;
+        var pass2 = document.getElementById("pass2").value;
+        var d = CryptoJS.DES.decrypt(ctext, pass2).toString(CryptoJS.enc.Utf8);
+        document.getElementById("out2").value = d;
+      }
+    </script>
+  </body>
+</html>
